@@ -1,31 +1,25 @@
 import { useSelector, useDispatch } from "react-redux";
+import { actions } from "./store";
 
 function App() {
   const counter = useSelector((state) => state.counter);
   const dispatch = useDispatch();
   const increment = () => {
-    return {
-      type: "INC",
-    };
+    dispatch(actions.increment());
   };
   const decrement = () => {
-    return {
-      type: "DEC",
-    };
+    dispatch(actions.decrement());
   };
   const addBy = () => {
-    return {
-      type: "ADD",
-      payload: 10,
-    };
+    dispatch(actions.addBy(10));
   };
   return (
     <div>
       <h1>Counter App</h1>
       <h2>{counter}</h2>
-      <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button>
-      <button onClick={() => dispatch(addBy())}>Add by 10</button>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <button onClick={addBy}>Add by 10</button>
     </div>
   );
 }
